@@ -29,11 +29,6 @@ class Ckonto
 	 */
 	public static function getKey()
 	{
-		if (null === self::$key) {
-			$config = require __DIR__ . '/../../../config/ckonto.php';
-			self::$key = $config['key'];
-		}
-
 		return self::$key;
 	}
 
