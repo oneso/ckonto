@@ -47,7 +47,7 @@ class Ckonto
 	 * @param null $iban
 	 * @param null $bic
 	 * @param bool $sepa
-	 * @return BankCheck
+	 * @return IbanCheck
 	 */
 	public static function checkIban($iban = null, $bic = null, $sepa = false)
 	{
