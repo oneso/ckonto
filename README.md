@@ -1,5 +1,7 @@
 # cKonto
 
+[![Build Status](https://travis-ci.org/oneso/ckonto.svg)](https://travis-ci.org/oneso/ckonto)
+
 ### Installing via Composer
 ```
 composer require oneso/ckonto
