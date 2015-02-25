@@ -1,8 +1,8 @@
 <?php
 namespace Oneso\Ckonto\Webservice\Search;
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\RequestException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Oneso\Ckonto\Webservice\Ckonto;
 
 /**
@@ -40,7 +40,7 @@ class SearchRequest
 
 			$response = $client->get('https://www.ckonto.de/webservice.cgi', [
 				'query' => $query
-			])->send();
+			]);
 
 			return new SearchResponse($response);
 		} catch (RequestException $e) {

@@ -1,8 +1,8 @@
 <?php
 namespace Oneso\Ckonto\Webservice\IbanCheck;
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\RequestException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Oneso\Ckonto\Webservice\Ckonto;
 
 /**
@@ -30,7 +30,7 @@ class IbanCheckRequest
 					'bic' => $bic,
 					'sepa' => $sepa ? 1 : 0
 				]
-			])->send();
+			]);
 
 			return new IbanCheckResponse($response);
 		} catch (RequestException $e) {

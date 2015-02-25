@@ -1,7 +1,7 @@
 <?php
 namespace Oneso\Ckonto\Webservice\IbanCheck;
 
-use Guzzle\Http\Message\Response;
+use GuzzleHttp\Message\Response;
 
 /**
  * @author Marcel Görtz <goertz.marcel@gmail.com>

@@ -1,8 +1,8 @@
 <?php
 namespace Oneso\Ckonto\Webservice\BankCheck;
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\RequestException;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Oneso\Ckonto\Webservice\Ckonto;
 
 /**
@@ -30,7 +30,7 @@ class BankCheckRequest
 					'bankleitzahl' => $bankCode,
 					'sepa' => $sepa ? 1 : 0
 				]
-			])->send();
+			]);
 
 			return new BankCheckResponse($response);
 		} catch (RequestException $e) {
