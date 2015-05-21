@@ -27,10 +27,10 @@ class IbanCheck
 	 * @param null $iban
 	 * @param bool $sepa
 	 */
-	function __construct($bic = null, $iban = null, $sepa = false)
+	function __construct($iban = null, $bic = null, $sepa = false)
 	{
-		$this->bic = $bic;
-		$this->iban = $iban;
+        $this->iban = $iban;
+        $this->bic = $bic;
 		$this->sepa = $sepa;
 	}
 
