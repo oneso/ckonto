@@ -1,5 +1,10 @@
 <?php
 namespace Oneso\Ckonto\Webservice\Search;
+use Oneso\Ckonto\Webservice\Objects\BankCode;
+use Oneso\Ckonto\Webservice\Objects\Location;
+use Oneso\Ckonto\Webservice\Objects\Max;
+use Oneso\Ckonto\Webservice\Objects\Name;
+use Oneso\Ckonto\Webservice\Objects\Zip;
 
 /**
  * @author Marcel Görtz <goertz.marcel@gmail.com>
@@ -7,102 +12,52 @@ namespace Oneso\Ckonto\Webservice\Search;
  */
 class Search
 {
-	/**
-	 * @var string
-	 */
-	protected $zip;
+    /**
+     * @var Zip
+     */
+    protected $zip;
 
-	/**
-	 * @var string
-	 */
-	protected $bankCode;
+    /**
+     * @var BankCode
+     */
+    protected $bankCode;
 
-	/**
-	 * @var string
-	 */
-	protected $name;
+    /**
+     * @var Name
+     */
+    protected $name;
 
-	/**
-	 * @var string
-	 */
-	protected $location;
+    /**
+     * @var Location
+     */
+    protected $location;
 
-	/**
-	 * @var integer
-	 */
-	protected $max;
+    /**
+     * @var Max
+     */
+    protected $max;
 
-	/**
-	 * @param $bankCode
-	 * @param $location
-	 * @param $name
-	 * @param $zip
-	 * @param null $max
-	 */
-	function __construct($bankCode = null, $location = null, $name = null, $zip = null, $max = null)
-	{
-		$this->bankCode = $bankCode;
-		$this->location = $location;
-		$this->name = $name;
-		$this->zip = $zip;
-		$this->max = $max;
-	}
+    /**
+     * @param BankCode $bankCode
+     * @param Location $location
+     * @param Name $name
+     * @param Zip $zip
+     * @param Max $max
+     */
+    function __construct(BankCode $bankCode, Location $location, Name $name, Zip $zip, Max $max)
+    {
+        $this->bankCode = $bankCode;
+        $this->location = $location;
+        $this->name = $name;
+        $this->zip = $zip;
+        $this->max = $max;
+    }
 
-	/**
-	 * @param string $bankCode
-	 * @return $this
-	 */
-	public function setBankCode($bankCode)
-	{
-		$this->bankCode = $bankCode;
-		return $this;
-	}
-
-	/**
-	 * @param string $location
-	 * @return $this
-	 */
-	public function setLocation($location)
-	{
-		$this->location = $location;
-		return $this;
-	}
-
-	/**
-	 * @param string $name
-	 * @return $this
-	 */
-	public function setName($name)
-	{
-		$this->name = $name;
-		return $this;
-	}
-
-	/**
-	 * @param string $zip
-	 * @return $this
-	 */
-	public function setZip($zip)
-	{
-		$this->zip = $zip;
-		return $this;
-	}
-
-	/**
-	 * @param int $max
-	 * @return $this
-	 */
-	public function setMax($max)
-	{
-		$this->max = $max;
-		return $this;
-	}
-
-	/**
-	 * @return SearchResponse
-	 */
-	public function search()
-	{
-		return SearchRequest::request($this->bankCode, $this->location, $this->name, $this->zip, $this->max);
-	}
+    /**
+     * @return SearchResponse
+     */
+    public function search()
+    {
+        return SearchRequest::request($this->bankCode, $this->location, $this->name, $this->zip, $this->max);
+    }
 } 

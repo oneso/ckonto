@@ -4,6 +4,9 @@ namespace Oneso\Ckonto\Webservice\BankCheck;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Oneso\Ckonto\Webservice\Ckonto;
+use Oneso\Ckonto\Webservice\Objects\AccountNumber;
+use Oneso\Ckonto\Webservice\Objects\BankCode;
+use Oneso\Ckonto\Webservice\Objects\Sepa;
 
 /**
  * @author Marcel Görtz <goertz.marcel@gmail.com>
@@ -11,30 +14,30 @@ use Oneso\Ckonto\Webservice\Ckonto;
  */
 class BankCheckRequest
 {
-	/**
-	 * @param string $accountNumber
-	 * @param string $bankCode
-	 * @param boolean $sepa
-	 * @throws BankCheckException
-	 * @return BankCheckResponse
-	 */
-	public static function request($accountNumber, $bankCode, $sepa)
-	{
-		$client = new Client();
+    /**
+     * @param AccountNumber $accountNumber
+     * @param BankCode $bankCode
+     * @param Sepa $sepa
+     * @throws BankCheckException
+     * @return BankCheckResponse
+     */
+    public static function request(AccountNumber $accountNumber, BankCode $bankCode, Sepa $sepa)
+    {
+        $client = new Client();
 
-		try {
-			$response = $client->get('https://www.ckonto.de/webservice.cgi', [
-				'query' => [
-					'key' => Ckonto::getKey(),
-					'kontonummer' => $accountNumber,
-					'bankleitzahl' => $bankCode,
-					'sepa' => $sepa ? 1 : 0
-				]
-			]);
+        try {
+            $response = $client->get(Ckonto::$url, [
+                'query' => [
+                    'key' => Ckonto::getKey(),
+                    'kontonummer' => $accountNumber->getValue(),
+                    'bankleitzahl' => $bankCode->getValue(),
+                    'sepa' => $sepa->isEnabled() ? 1 : 0
+                ]
+            ]);
 
-			return new BankCheckResponse($response);
-		} catch (RequestException $e) {
-			throw new BankCheckException('BankCheckRequest error occurred');
-		}
-	}
+            return new BankCheckResponse($response);
+        } catch (RequestException $e) {
+            throw new BankCheckException('BankCheckRequest error occurred');
+        }
+    }
 }

@@ -7,34 +7,34 @@ namespace Oneso\Ckonto\Webservice\Search;
  */
 class SearchItemCollection
 {
-	/**
-	 * @var array
-	 */
-	protected $items;
+    /**
+     * @var array
+     */
+    protected $items;
 
-	/**
-	 * @param array $items
-	 */
-	function __construct(array $items)
-	{
-		foreach ($items as $key => $data) {
-			$this->items[] = new SearchItem($data);
-		}
-	}
+    /**
+     * @param array $items
+     */
+    function __construct(array $items)
+    {
+        foreach ($items as $key => $data) {
+            $this->items[] = new SearchItem($data);
+        }
+    }
 
-	/**
-	 * @return array
-	 */
-	public function all()
-	{
-		return $this->items;
-	}
+    /**
+     * @return array
+     */
+    public function all()
+    {
+        return $this->items;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function count()
-	{
-		return count($this->items);
-	}
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->items);
+    }
 } 

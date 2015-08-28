@@ -1,20 +1,23 @@
 {
-    "name": "oneso/ckonto",
-    "description": "Helper package for https://www.ckonto.de",
-    "authors": [
-        {
-            "name": "Marcel Görtz",
-            "email": "goertz.marcel@gmail.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.4.0",
-        "guzzlehttp/guzzle": "5.2.0"
-    },
-    "autoload": {
-        "psr-0": {
-            "Oneso\\Ckonto": "src/"
-        }
-    },
-    "minimum-stability": "stable"
+  "name": "oneso/ckonto",
+  "description": "Helper package for https://www.ckonto.de",
+  "authors": [
+    {
+      "name": "Marcel Görtz",
+      "email": "goertz.marcel@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": ">=5.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4"
+  },
+  "autoload": {
+    "psr-0": {
+      "Oneso\\Ckonto": "src/"
+    }
+  },
+  "minimum-stability": "stable"
 }

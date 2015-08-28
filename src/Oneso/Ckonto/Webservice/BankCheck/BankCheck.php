@@ -1,5 +1,8 @@
 <?php
 namespace Oneso\Ckonto\Webservice\BankCheck;
+use Oneso\Ckonto\Webservice\Objects\AccountNumber;
+use Oneso\Ckonto\Webservice\Objects\BankCode;
+use Oneso\Ckonto\Webservice\Objects\Sepa;
 
 /**
  * @author Marcel Görtz <goertz.marcel@gmail.com>
@@ -7,69 +10,38 @@ namespace Oneso\Ckonto\Webservice\BankCheck;
  */
 class BankCheck
 {
-	/**
-	 * @var string
-	 */
-	protected $accountNumber;
+    /**
+     * @var AccountNumber
+     */
+    protected $accountNumber;
 
-	/**
-	 * @var string
-	 */
-	protected $bankCode;
+    /**
+     * @var BankCode
+     */
+    protected $bankCode;
 
-	/**
-	 * @var bool
-	 */
-	protected $sepa;
+    /**
+     * @var Sepa
+     */
+    protected $sepa;
 
-	/**
-	 * @param null $accountNumber
-	 * @param null $bankCode
-	 * @param bool $sepa
-	 */
-	function __construct($accountNumber = null, $bankCode = null, $sepa = false)
-	{
+    /**
+     * @param AccountNumber $accountNumber
+     * @param BankCode $bankCode
+     * @param Sepa $sepa
+     */
+    function __construct(AccountNumber $accountNumber, BankCode $bankCode, Sepa $sepa)
+    {
+        $this->accountNumber = $accountNumber;
+        $this->bankCode = $bankCode;
+        $this->sepa = $sepa;
+    }
 
-		$this->accountNumber = $accountNumber;
-		$this->bankCode = $bankCode;
-		$this->sepa = $sepa;
-	}
-
-	/**
-	 * @param string $accountNumber
-	 * @return $this
-	 */
-	public function setAccountNumber($accountNumber)
-	{
-		$this->accountNumber = $accountNumber;
-		return $this;
-	}
-
-	/**
-	 * @param string $bankCode
-	 * @return $this
-	 */
-	public function setBankCode($bankCode)
-	{
-		$this->bankCode = $bankCode;
-		return $this;
-	}
-
-	/**
-	 * @param boolean $sepa
-	 * @return $this
-	 */
-	public function setSepa($sepa)
-	{
-		$this->sepa = (bool)$sepa;
-		return $this;
-	}
-
-	/**
-	 * @return BankCheckResponse
-	 */
-	public function check()
-	{
-		return BankCheckRequest::request($this->accountNumber, $this->bankCode, $this->sepa);
-	}
+    /**
+     * @return BankCheckResponse
+     */
+    public function check()
+    {
+        return BankCheckRequest::request($this->accountNumber, $this->bankCode, $this->sepa);
+    }
 } 

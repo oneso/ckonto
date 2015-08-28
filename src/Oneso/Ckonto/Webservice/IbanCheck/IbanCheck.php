@@ -1,5 +1,8 @@
 <?php
 namespace Oneso\Ckonto\Webservice\IbanCheck;
+use Oneso\Ckonto\Webservice\Objects\Bic;
+use Oneso\Ckonto\Webservice\Objects\Iban;
+use Oneso\Ckonto\Webservice\Objects\Sepa;
 
 /**
  * @author Marcel Görtz <goertz.marcel@gmail.com>
@@ -7,68 +10,38 @@ namespace Oneso\Ckonto\Webservice\IbanCheck;
  */
 class IbanCheck
 {
-	/**
-	 * @var string
-	 */
-	protected $iban;
+    /**
+     * @var Iban
+     */
+    protected $iban;
 
-	/**
-	 * @var string
-	 */
-	protected $bic;
+    /**
+     * @var Bic
+     */
+    protected $bic;
 
-	/**
-	 * @var boolean
-	 */
-	protected $sepa;
+    /**
+     * @var boolean
+     */
+    protected $sepa;
 
-	/**
-	 * @param null $bic
-	 * @param null $iban
-	 * @param bool $sepa
-	 */
-	function __construct($iban = null, $bic = null, $sepa = false)
-	{
+    /**
+     * @param Iban $iban
+     * @param Bic $bic
+     * @param Sepa $sepa
+     */
+    function __construct(Iban $iban, Bic $bic, Sepa $sepa)
+    {
         $this->iban = $iban;
         $this->bic = $bic;
-		$this->sepa = $sepa;
-	}
+        $this->sepa = $sepa;
+    }
 
-	/**
-	 * @param string $bic
-	 * @return $this
-	 */
-	public function setBic($bic)
-	{
-		$this->bic = $bic;
-		return $this;
-	}
-
-	/**
-	 * @param string $iban
-	 * @return $this
-	 */
-	public function setIban($iban)
-	{
-		$this->iban = $iban;
-		return $this;
-	}
-
-	/**
-	 * @param boolean $sepa
-	 * @return $this
-	 */
-	public function setSepa($sepa)
-	{
-		$this->sepa = (bool) $sepa;
-		return $this;
-	}
-
-	/**
-	 * @return IbanCheckResponse
-	 */
-	public function check()
-	{
-		return IbanCheckRequest::request($this->iban, $this->bic, $this->sepa);
-	}
+    /**
+     * @return IbanCheckResponse
+     */
+    public function check()
+    {
+        return IbanCheckRequest::request($this->iban, $this->bic, $this->sepa);
+    }
 } 

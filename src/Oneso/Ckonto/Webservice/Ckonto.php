@@ -3,6 +3,15 @@ namespace Oneso\Ckonto\Webservice;
 
 use Oneso\Ckonto\Webservice\BankCheck\BankCheck;
 use Oneso\Ckonto\Webservice\IbanCheck\IbanCheck;
+use Oneso\Ckonto\Webservice\Objects\AccountNumber;
+use Oneso\Ckonto\Webservice\Objects\BankCode;
+use Oneso\Ckonto\Webservice\Objects\Bic;
+use Oneso\Ckonto\Webservice\Objects\Iban;
+use Oneso\Ckonto\Webservice\Objects\Location;
+use Oneso\Ckonto\Webservice\Objects\Max;
+use Oneso\Ckonto\Webservice\Objects\Name;
+use Oneso\Ckonto\Webservice\Objects\Sepa;
+use Oneso\Ckonto\Webservice\Objects\Zip;
 use Oneso\Ckonto\Webservice\Search\Search;
 
 /**
@@ -11,58 +20,67 @@ use Oneso\Ckonto\Webservice\Search\Search;
  */
 class Ckonto
 {
-	/**
-	 * @var null|string
-	 */
-	protected static $key = null;
+    /**
+     * @var null|string
+     */
+    protected static $key = null;
 
-	/**
-	 * @param string $key
-	 */
-	public static function setKey($key)
-	{
-		self::$key = (string) $key;
-	}
+    /**
+     * @var string
+     */
+    public static $url = 'https://www.ckonto.de/webservice.cgi';
 
-	/**
-	 * @return string
-	 */
-	public static function getKey()
-	{
-		return self::$key;
-	}
+    /**
+     * @param string $key
+     */
+    public static function setKey($key)
+    {
+        self::$key = (string)$key;
+    }
 
-	/**
-	 * @param null $accountNumber
-	 * @param null $bankCode
-	 * @param bool $sepa
-	 * @return BankCheck
-	 */
-	public static function checkBank($accountNumber = null, $bankCode = null, $sepa = false)
-	{
-		return new BankCheck($accountNumber, $bankCode, $sepa);
-	}
+    /**
+     * @return string
+     */
+    public static function getKey()
+    {
+        return self::$key;
+    }
 
-	/**
-	 * @param null $iban
-	 * @param null $bic
-	 * @param bool $sepa
-	 * @return IbanCheck
-	 */
-	public static function checkIban($iban = null, $bic = null, $sepa = false)
-	{
-		return new IbanCheck($iban, $bic, $sepa);
-	}
+    /**
+     * @param AccountNumber $accountNumber
+     * @param BankCode $bankCode
+     * @param Sepa $sepa
+     *
+     * @return BankCheck
+     */
+    public static function checkBank(AccountNumber $accountNumber, BankCode $bankCode, Sepa $sepa)
+    {
+        return new BankCheck($accountNumber, $bankCode, $sepa);
+    }
 
-	/**
-	 * @param null $bankCode
-	 * @param null $location
-	 * @param null $name
-	 * @param null $zip
-	 * @return Search
-	 */
-	public static function search($bankCode = null, $location = null, $name = null, $zip = null)
-	{
-		return new Search($bankCode, $location, $name, $zip);
-	}
+    /**
+     * @param Iban $iban
+     * @param Bic $bic
+     * @param Sepa $sepa
+     *
+     * @return IbanCheck
+     */
+    public static function checkIban(Iban $iban, Bic $bic, Sepa $sepa)
+    {
+        return new IbanCheck($iban, $bic, $sepa);
+    }
+
+    /**
+     * @param BankCode $bankCode
+     * @param Location $location
+     * @param Name $name
+     * @param Zip $zip
+     * @param Max $max
+     *
+     * @return Search
+     */
+    public static function search(BankCode $bankCode, Location $location, Name $name, Zip $zip, Max $max)
+    {
+        return new Search($bankCode, $location, $name, $zip, $max);
+    }
 } 
